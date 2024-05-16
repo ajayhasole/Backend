@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import adminRouter from './routes/admin-routes.js'
+import bookingsRouter from './routes/booking-routes.js';
 
 
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/admin', adminRouter);
+app.use('/booking', bookingsRouter);
 
 
 
