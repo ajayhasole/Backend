@@ -42,8 +42,8 @@ export const addAdmin = async (req,res,next)=>{
 
 export const adminLogin = async(req,res,next) =>{
     const {email, password} = req.body;
-
-    if(!email && email.trim()== "" && !password && password.trim()== ""){
+           console.log(email)
+    if(!email || email.trim()== "" || !password || password.trim()== ""){
         return res.status(422).json({message:"Invalid Inputs"})
     }
 
@@ -74,4 +74,17 @@ export const adminLogin = async(req,res,next) =>{
 }
 
 
+export const getAdmins = async(req,res,next)=>{
+    let admins;
+    
+    try {
+        admins = await Admin.find();
+    } catch (error) {
+        console.log(error);
+    }
+    if(!admins){
+        return res.status(404).json({message:"There are no Admins/ faulty Admin value"});
+    }
+    return res.status(200).json({admins})
 
+}

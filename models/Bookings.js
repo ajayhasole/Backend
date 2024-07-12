@@ -3,7 +3,8 @@ import { type } from "os";
 
 const bookingSchema = new mongoose.Schema({
     movie:{
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref:"Movie",
         required: true
     },
 
@@ -16,9 +17,12 @@ const bookingSchema = new mongoose.Schema({
         required: true
     },
     user:{
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: "User",
         required: true
     },
+    
+    
 })
 
 export default mongoose.model("Booking", bookingSchema)
